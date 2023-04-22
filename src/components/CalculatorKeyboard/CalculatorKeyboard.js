@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
+import DeleteIcon from "../../assets/icons/DeleteIcon/DeleteIcon";
 
 const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
 
@@ -33,25 +34,25 @@ const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
         <ButtonSC onClick={() => {setCounts("0"); setResult("0")}}>AC</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState => refreshOperator(prevState)))}>+/-</ButtonSC>
         <ButtonSC onClick={() => {setCounts((prevState) => eval(cutExcess(prevState + "/ 100")) + ""); setResult("0")}}>%</ButtonSC>
-        <ButtonSC onClick={() => setCounts("0")}>del</ButtonSC>
+        <ButtonSC onClick={() => setCounts("0")}><DeleteIcon /></ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "7")}>7</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "8")}>8</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "9")}>9</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "/"); setCounts("0")}}>/</ButtonSC>
+        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "/"); setCounts("0")}}>÷</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "4")}>4</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "5")}>5</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "6")}>6</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "*"); setCounts("0")}}>*</ButtonSC>
+        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "*"); setCounts("0")}}>×</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "1")}>1</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "2")}>2</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "3")}>3</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "-"); setCounts("0")}}>-</ButtonSC>
+        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "-"); setCounts("0")}}>–</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => setCounts((prevState) => prevState.indexOf(".") == -1 ? prevState + "." : prevState)}>,</ButtonSC>
@@ -72,7 +73,7 @@ const ButtonsLineSC = styled("div")`
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 15px;
+  margin-bottom: 11px;
 `
 
 const ButtonSC = styled("button")`
@@ -80,7 +81,6 @@ const ButtonSC = styled("button")`
   width: 40px;
   color: gray;
   background-color: lightgray;
-  //border: 1px solid white;
   border: none;
   border-radius: 50%;
 
@@ -98,6 +98,8 @@ const ButtonSC = styled("button")`
   :active {
     box-shadow: 1px 1px 2px white, -1px -1px 2px gray;
   }
+  
+  transition: background-color 0.5s, box-shadow 0.2s;
 `
 
 export default CalculatorKeyboard;

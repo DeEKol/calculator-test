@@ -12,13 +12,13 @@ const CalculatorScreen = ({counts}) => {
 };
 
 const CalculatorScreenSC = styled("div")`
-  height: 250px;
+  height: 210px;
   
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 `
 
 const CalculatorNumberSC = styled("div")`

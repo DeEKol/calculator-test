@@ -29,9 +29,9 @@ const ContainerSC = styled("section")`
 
 const WrapperSC = styled("div")`
   width: 100%;
-  max-width: 300px;
+  max-width: 285px;
 
-  padding: 20px;
+  padding: 35px 23px;
   border-radius: 30px;
 
   background-color: lightgray;
