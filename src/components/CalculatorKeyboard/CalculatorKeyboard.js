@@ -4,7 +4,7 @@ import DeleteIcon from "../../assets/icons/DeleteIcon/DeleteIcon";
 
 const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
 
-  let cutFirstZero = (string) => {
+  const cutFirstZero = (string) => {
     return string.startsWith('0') ? string.slice(1) : string;
   };
 
@@ -28,37 +28,111 @@ const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
     return "-" + string;
   }
 
+  const clickNumber = (number) => {
+    setCounts((prevState) => cutFirstZero(prevState) + number)
+  }
+
+  const clickOperator = (operator) => {
+    setResult((prevState) => prevState + counts + operator)
+    setCounts("0")
+  }
+
+  const clickPercent = () => {
+    setCounts((prevState) => prevState !== "0" ? (eval(cutExcess(prevState + "/ 100")) + "") : "0")
+    setResult("0")
+  }
+
+  const clickEquals = () => {
+    setCounts(eval(cutExcess(result + counts)) + "")
+    setResult("0")
+  }
+
+  const clickDot = () => {
+    setCounts((prevState) => prevState.indexOf(".") == -1 ? prevState + "." : prevState)
+  }
+
+  useEffect(() => {
+    const onKeypress = e => {
+      switch(e.key) {
+        case "1": clickNumber("1");
+          break;
+        case "2": clickNumber("2");
+          break;
+        case "3": clickNumber("3");
+          break;
+        case "4": clickNumber("4");
+          break;
+        case "5": clickNumber("5");
+          break;
+        case "6": clickNumber("6");
+          break;
+        case "7": clickNumber("7");
+          break;
+        case "8": clickNumber("8");
+          break;
+        case "9": clickNumber("9");
+          break;
+        case "0": clickNumber("0");
+          break;
+        case "/": clickOperator("/");
+          break;
+        case "*": clickOperator("*");
+          break;
+        case "-": clickOperator("-");
+          break;
+        case "+": clickOperator("+")
+          break;
+        case "%": clickPercent()
+          break;
+        case "=": clickEquals()
+          break;
+        case "Enter": clickEquals()
+          break;
+        case ".": clickDot()
+          break;
+        case ",": clickDot()
+          break;
+      }
+    }
+
+    document.addEventListener('keypress', onKeypress);
+
+    return () => {
+      document.removeEventListener('keypress', onKeypress);
+    };
+  }, [counts]);
+
   return (
     <ButtonsBlockSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => {setCounts("0"); setResult("0")}}>AC</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState => refreshOperator(prevState)))}>+/-</ButtonSC>
-        <ButtonSC onClick={() => {setCounts((prevState) => eval(cutExcess(prevState + "/ 100")) + ""); setResult("0")}}>%</ButtonSC>
+        <ButtonSC onClick={() => clickPercent()}>%</ButtonSC>
         <ButtonSC onClick={() => setCounts("0")}><DeleteIcon /></ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "7")}>7</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "8")}>8</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "9")}>9</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "/"); setCounts("0")}}>÷</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("7")}>7</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("8")}>8</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("9")}>9</ButtonSC>
+        <ButtonSC onClick={() => clickOperator("/")}>÷</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "4")}>4</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "5")}>5</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "6")}>6</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "*"); setCounts("0")}}>×</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("4")}>4</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("5")}>5</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("6")}>6</ButtonSC>
+        <ButtonSC onClick={() => clickOperator("*")}>×</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "1")}>1</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "2")}>2</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "3")}>3</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "-"); setCounts("0")}}>–</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("1")}>1</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("2")}>2</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("3")}>3</ButtonSC>
+        <ButtonSC onClick={() => clickOperator("-")}>–</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
-        <ButtonSC onClick={() => setCounts((prevState) => prevState.indexOf(".") == -1 ? prevState + "." : prevState)}>,</ButtonSC>
-        <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "0")}>0</ButtonSC>
-        <ButtonSC onClick={() => {setCounts(eval(cutExcess(result + counts)) + ""); setResult("0")}}>=</ButtonSC>
-        <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "+"); setCounts("0")}}>+</ButtonSC>
+        <ButtonSC onClick={() => clickDot()}>,</ButtonSC>
+        <ButtonSC onClick={() => clickNumber("0")}>0</ButtonSC>
+        <ButtonSC onClick={() => clickEquals()}>=</ButtonSC>
+        <ButtonSC onClick={() => clickOperator("+")}>+</ButtonSC>
       </ButtonsLineSC>
     </ButtonsBlockSC>
   );
