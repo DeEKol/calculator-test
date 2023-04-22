@@ -1,15 +1,4 @@
-import React from 'react';
 import styled from "styled-components";
-
-const CalculatorScreen = ({counts}) => {
-  return (
-    <CalculatorScreenSC>
-      <CalculatorNumberSC>
-        {counts}
-      </CalculatorNumberSC>
-    </CalculatorScreenSC>
-  );
-};
 
 const CalculatorScreenSC = styled("div")`
   height: 210px;
@@ -30,4 +19,4 @@ const CalculatorNumberSC = styled("div")`
   word-break: break-all;
 `
 
-export default CalculatorScreen;
+export const CalculatorScreenStyles = () => ({CalculatorScreenSC, CalculatorNumberSC})

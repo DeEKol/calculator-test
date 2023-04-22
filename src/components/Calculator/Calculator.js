@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import CalculatorScreen from "./CalculatorScreen/CalculatorScreen";
 import CalculatorKeyboard from "./CalculatorKeyboard/CalculatorKeyboard";
+import {CalculatorStyles} from "./Calculator.styles";
 
 const Calculator = () => {
   const [counts, setCounts] = useState("0");
@@ -19,26 +20,7 @@ const Calculator = () => {
   );
 };
 
-const ContainerSC = styled("section")`
-  min-height: 100vh;
+const {ContainerSC, WrapperSC, CalculatorSC} = CalculatorStyles()
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const WrapperSC = styled("div")`
-  width: 100%;
-  max-width: 285px;
-
-  padding: 35px 23px;
-  border-radius: 30px;
-
-  background-color: lightgray;
-  
-`;
-
-const CalculatorSC = styled("div")`
-`
 
 export default Calculator;
