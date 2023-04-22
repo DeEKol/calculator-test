@@ -16,7 +16,7 @@ const ButtonSC = styled("button")`
   height: 40px;
   width: 40px;
   color: gray;
-  background-color: lightgray;
+  background-color: #e5e5e5;
   border: none;
   border-radius: 50%;
 

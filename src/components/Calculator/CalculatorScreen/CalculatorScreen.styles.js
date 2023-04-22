@@ -8,6 +8,8 @@ const CalculatorScreenSC = styled("div")`
   align-items: flex-end;
   
   padding-bottom: 30px;
+  
+  overflow: hidden;
 `
 
 const CalculatorNumberSC = styled("div")`

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import CalculatorScreen from "./CalculatorScreen/CalculatorScreen";
 import CalculatorKeyboard from "./CalculatorKeyboard/CalculatorKeyboard";
 import {CalculatorStyles} from "./Calculator.styles";

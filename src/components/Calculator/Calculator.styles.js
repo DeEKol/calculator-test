@@ -15,8 +15,8 @@ const WrapperSC = styled("div")`
   padding: 35px 23px;
   border-radius: 30px;
 
-  background-color: lightgray;
-  
+  background-color: #e5e5e5;
+
 `;
 
 const CalculatorSC = styled("div")`

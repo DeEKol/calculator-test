@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import styled from "styled-components";
 import DeleteIcon from "../../../assets/icons/DeleteIcon/DeleteIcon";
 import {useCalculatorKeyboard} from "./useCalculatorKeyboard";
 import {CalculatorKeyboardStyles} from "./CalculatorKeyboard.styles";
