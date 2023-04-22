@@ -20,12 +20,19 @@ const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
     return cutLastOperator(newString);
   }
 
+  const refreshOperator = (string) => {
+    if (string.startsWith("-") || string.startsWith("0")) {
+      return string.slice(1);
+    }
+    return "-" + string;
+  }
+
   return (
     <ButtonsBlockSC>
       <ButtonsLineSC>
         <ButtonSC onClick={() => {setCounts("0"); setResult("0")}}>AC</ButtonSC>
-        <ButtonSC>+/-</ButtonSC>
-        <ButtonSC>%</ButtonSC>
+        <ButtonSC onClick={() => setCounts((prevState => refreshOperator(prevState)))}>+/-</ButtonSC>
+        <ButtonSC onClick={() => {setCounts((prevState) => eval(cutExcess(prevState + "/ 100")) + ""); setResult("0")}}>%</ButtonSC>
         <ButtonSC onClick={() => setCounts("0")}>del</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
@@ -47,7 +54,7 @@ const CalculatorKeyboard = ({counts, setCounts, result, setResult}) => {
         <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "-"); setCounts("0")}}>-</ButtonSC>
       </ButtonsLineSC>
       <ButtonsLineSC>
-        <ButtonSC onClick={() => setCounts((prevState) => prevState + ",")}>,</ButtonSC>
+        <ButtonSC onClick={() => setCounts((prevState) => prevState.indexOf(".") == -1 ? prevState + "." : prevState)}>,</ButtonSC>
         <ButtonSC onClick={() => setCounts((prevState) => cutFirstZero(prevState) + "0")}>0</ButtonSC>
         <ButtonSC onClick={() => {setCounts(eval(cutExcess(result + counts)) + ""); setResult("0")}}>=</ButtonSC>
         <ButtonSC onClick={() => {setResult((prevState) => prevState + counts + "+"); setCounts("0")}}>+</ButtonSC>
