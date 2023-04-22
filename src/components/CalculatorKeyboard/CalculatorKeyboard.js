@@ -79,12 +79,24 @@ const ButtonSC = styled("button")`
   height: 40px;
   width: 40px;
   color: gray;
-  border-radius: 50%;
+  background-color: lightgray;
+  //border: 1px solid white;
   border: none;
+  border-radius: 50%;
+
+  box-shadow: 1px 1px 2px gray, -1px -1px 2px white;
 
   :last-child {
     background-color: orange;
     color: white;
+  }
+
+  :hover {
+    background-color: #e8e8e8;
+  }
+
+  :active {
+    box-shadow: 1px 1px 2px white, -1px -1px 2px gray;
   }
 `
 

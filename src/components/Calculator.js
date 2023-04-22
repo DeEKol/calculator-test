@@ -32,13 +32,13 @@ const WrapperSC = styled("div")`
   max-width: 300px;
 
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 30px;
 
-  background-color: #ffffff;
+  background-color: lightgray;
+  
 `;
 
 const CalculatorSC = styled("div")`
-  color: red;
 `
 
 export default Calculator;
