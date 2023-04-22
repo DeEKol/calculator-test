@@ -12,7 +12,7 @@ const Calculator = () => {
       <WrapperSC>
         <CalculatorSC>
           <CalculatorScreen counts={counts} />
-          <CalculatorKeyboard setCounts={setCounts} />
+          <CalculatorKeyboard counts={counts} setCounts={setCounts} result={result} setResult={setResult} />
         </CalculatorSC>
       </WrapperSC>
     </ContainerSC>
